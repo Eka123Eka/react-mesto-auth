@@ -1,21 +1,29 @@
-import { useRef, useEffect } from "react";
+import { useState, useEffect } from "react";
 import PopupWithForm from "./PopupWithForm";
 
 function AddPlacePopup({ isOpen, onClose, onAddPlace }) {
-  const nameRef = useRef();
-  const linkRef = useRef();
+  const [name, setName] = useState('');
+  const [link, setLink] = useState('');
 
   useEffect(() => {
-    nameRef.current.value = ''
-    linkRef.current.value = ''
+    setName('');
+    setLink('');
   }, [isOpen]);
 
   function handleSubmit(e) {
     e.preventDefault();
     onAddPlace({
-      name: nameRef.current.value,
-      link: linkRef.current.value,
+      name: name,
+      link: link,
     });
+  }
+
+  function handleNameChange(evt) {
+    setName(evt.target.value);
+  }
+
+  function handleLinkChange(evt) {
+    setLink(evt.target.value);
   }
 
   return (
@@ -23,12 +31,12 @@ function AddPlacePopup({ isOpen, onClose, onAddPlace }) {
       onClose={onClose} onSubmit={handleSubmit} buttonText='Добавить'>
       <label className="popup__label">
         <input className="popup__input-field" name="place-input" type="text" placeholder="Назовите место"
-          minLength="2" maxLength="30" ref={nameRef} required />
+          minLength="2" maxLength="30" onChange={handleNameChange} value={name} required />
         <span className="popup__input-error"></span>
       </label>
       <label className="popup__label">
         <input className="popup__input-field" name="urlImage-input" type="url"
-          placeholder="Вставьте ссылку на фото места" ref={linkRef} required />
+          placeholder="Вставьте ссылку на фото места" onChange={handleLinkChange} value={link} required />
         <span className="popup__input-error"></span>
       </label>
     </PopupWithForm>

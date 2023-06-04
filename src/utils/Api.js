@@ -4,51 +4,50 @@ class Api {
     this._headers = headers;
   }
   getUserInfoServer() {
-    return fetch(`${this._baseUrl}/users/me`, { headers: this._headers })
-      .then(res => this._checkResponse(res, `getUserInfo - `))
+    return this._request(`${this._baseUrl}/users/me`, { headers: this._headers }, `getUserInfo - `);
   }
   getInitialCards() {
-    return fetch(`${this._baseUrl}/cards`, { headers: this._headers })
-      .then(res => this._checkResponse(res, `getInitialCards - `))
+    return this._request(`${this._baseUrl}/cards`, { headers: this._headers }, `getInitialCards - `);
   }
   sendUserInfo(dataUser) {
-    return fetch(`${this._baseUrl}/users/me`, {
+    return this._request(`${this._baseUrl}/users/me`, {
       headers: this._headers,
       method: 'PATCH',
       body: JSON.stringify(dataUser)
-    })
-      .then(res => this._checkResponse(res, `PATCH ${dataUser.name}, ${dataUser.about} - `))
+    }, `PATCH ${dataUser.name}, ${dataUser.about} - `);
   }
   addNewCardServer(dataCard) {
-    return fetch(`${this._baseUrl}/cards`, {
+    return this._request(`${this._baseUrl}/cards`, {
       headers: this._headers,
       method: 'POST',
       body: JSON.stringify(dataCard)
-    })
-      .then(res => this._checkResponse(res, `POST ${dataCard.link} - `))
+    }, `POST ${dataCard.link} - `);
   }
   deleteCardServer(idCard) {
-    return fetch(`${this._baseUrl}/cards/${idCard}`, {
+    return this._request(`${this._baseUrl}/cards/${idCard}`, {
       headers: this._headers,
       method: 'DELETE',
-    })
-      .then(res => this._checkResponse(res, `DELETE ${idCard} - `))
+    }, `DELETE ${idCard} - `);
   }
   toogleLikeServer(idCard, isLike) {
-    return fetch(`${this._baseUrl}/cards/${idCard}/likes`, {
+    return this._request(`${this._baseUrl}/cards/${idCard}/likes`, {
       headers: this._headers,
       method: isLike ? 'DELETE' : 'PUT'
-    })
-      .then(res => this._checkResponse(res, `TOGGLE like ${idCard} isLike = ${isLike} - `))
+    }, `TOGGLE like ${idCard} isLike = ${isLike} - `);
   }
   sendAvatar(urlAvatar) {
-    return fetch(`${this._baseUrl}/users/me/avatar`, {
+    return this._request(`${this._baseUrl}/users/me/avatar`, {
       headers: this._headers,
       method: 'PATCH',
       body: JSON.stringify({ avatar: urlAvatar })
-    })
-      .then(res => this._checkResponse(res, `PATCH Avatar ${urlAvatar} - `))
+    }, `PATCH Avatar ${urlAvatar} - `);
   }
+
+  async _request(url, props, sourceError) {
+    const res = await fetch(url, props);
+    return this._checkResponse(res, sourceError);
+  }
+
   _checkResponse(res, sourceError) {
     if (res.ok) {
       return res.json()
