@@ -2,7 +2,7 @@
 
 ### Описание проекта:
  - Необходимо портировать созданный ранее учебный проект "Mesto" на React
-
+ - Необходимо добавить авторизацию и роутинг, в созданный ранее учебный проект "Mesto" на React
 ### Используемые технологии:
 1. Flex
 2. Grid
@@ -20,11 +20,13 @@
 14. React Hooks(хуки)
 15. React Ref
 16. React State
+17. Rest Api
+18. Переадресация
+19. Локальное хранилище
 
 ### Инструкция по эксплуатации:
 1. Проект учебный, предназначен для практики портирования на React
 
 ### Ссылка на выложенный проект
-[https://eka123eka.github.io/mesto-react/](https://eka123eka.github.io/mesto-react/)
+[https://eka123eka.github.io/react-mesto-auth/](https://eka123eka.github.io/react-mesto-auth/)
 
->>>>>>> e9a2763 (Проект 12 initial commit)
