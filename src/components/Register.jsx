@@ -1,12 +1,10 @@
 import { useState } from 'react';
-//import { useNavigate } from 'react-router-dom';
 import Login from './Login';
 import Header from './Header.jsx';
 
 function Register({ isLogIn, onSubmit, nameForm }) {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
-  //const navigate = useNavigate();
 
   function handleChangeInput(e) {
     const { value } = e.target;
@@ -19,10 +17,6 @@ function Register({ isLogIn, onSubmit, nameForm }) {
     e.preventDefault();
     onSubmit({email, password});
   }
-
-  // useEffect(() => {
-  //   if (isLogIn) { navigate('/') }
-  // }, []);
 
   return (
     nameForm === 'register'
