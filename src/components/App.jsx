@@ -10,9 +10,9 @@ import EditProfilePopup from "./EditProfilePopup";
 import EditAvatarPopup from "./EditAvatarPopup";
 import AddPlacePopup from "./AddPlacePopup";
 import ConfirmDeletePopup from "./ConfirmDeletePopup";
-import Register from "./Register";
 import InfoTooltip from "./InfoTooltip";
 import ProtectedRoute from "./ProtectedRoute";
+import AuthForm from "./AuthForm";
 
 function App() {
   const [isEditProfilePopupOpen, setIsEditProfilePopupOpen] = useState(false);
@@ -193,10 +193,10 @@ function App() {
               onLogOut={handleLogOut} />}>
             </Route>
             <Route path='/sign-up'
-              element={<Register nameForm='register' isLogIn={isLogIn} onSubmit={handleRegister} />}>
+              element={<AuthForm nameForm='register' onSubmit={handleRegister} />}>
             </Route>
             <Route path='/sign-in'
-              element={<Register nameForm='login' isLogIn={isLogIn} onSubmit={handleAuthorization} />}>
+              element={<AuthForm nameForm='login' onSubmit={handleAuthorization} />}>
             </Route>
             <Route path='*' element={isLogIn ? <Navigate to='/' /> : <Navigate to='/sign-in' />} />
           </Routes>

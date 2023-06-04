@@ -1,6 +1,3 @@
-import React from 'react';
-import { Link } from 'react-router-dom';
-
 function Login({ name, title, buttonText, onSubmit, children }) {
   return (
     <div className='register'>
@@ -8,15 +5,7 @@ function Login({ name, title, buttonText, onSubmit, children }) {
         <h2 className='register__title'>{title}</h2>
         {children}
         <button className='register__button' type='submit' >{buttonText}</button>
-        {name === 'register'
-          ? <>
-            <p className='register__text-item'>
-              Уже зарегистрированы?
-              <span><Link className='register__link' to='/sign-in'> Войти</Link></span>
-            </p>
-          </>
-          : <p className='register__text-item'></p>
-        }
+        <p className='register__text-item'></p>
       </form>
     </div>
   )
